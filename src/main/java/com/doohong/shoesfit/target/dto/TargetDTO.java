@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @ToString
 @NoArgsConstructor(access= AccessLevel.PACKAGE)
-public class targetDTO {
+public class TargetDTO {
     @NotNull
     private String brand;
     @NotNull

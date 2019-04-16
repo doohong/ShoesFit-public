@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.Set;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Builder
 public class ShoesResponse {
     private Set<String> brandSet;

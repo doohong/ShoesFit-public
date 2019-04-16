@@ -12,7 +12,7 @@ import javax.persistence.*;
         name = "relation",
         uniqueConstraints = {
                 @UniqueConstraint(
-                        columnNames = {"shoes1", "shoes2"}
+                        columnNames = {"SHOES1_ID", "SHOES2_ID"}
                 )
         }
 )

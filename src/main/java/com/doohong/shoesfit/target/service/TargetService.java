@@ -9,6 +9,7 @@ import com.doohong.shoesfit.target.dto.TargetResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,12 +18,12 @@ public class TargetService {
     private ShoesSaveService shoesSaveService;
     private RelationSaveService relationSaveService;
 
-//    public TargetResponse targetFind(TargetRequest dto){
-//        List<Shoes> shoesList = shoesSaveService.shoesSave(dto.getShoesList());
-//        List<Relation> relationList;
-//        if(shoesList.size()>1){
-//            relationList=relationSaveService.relationSave(shoesList);
-//        }
-//        return new TargetResponse();
-//    }
+    public TargetResponse targetFind(TargetRequest dto){
+        List<Shoes> shoesList = shoesSaveService.shoesSave(dto.getShoesList());
+        List<Relation> relationList = new ArrayList<>();
+        if(shoesList.size()>1){
+            relationList=relationSaveService.relationSave(shoesList);
+        }
+        return TargetResponse.builder().shoesList(shoesList).relationList(relationList).build();
+    }
 }
