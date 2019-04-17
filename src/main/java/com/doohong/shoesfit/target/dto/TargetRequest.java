@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor(access= AccessLevel.PACKAGE)
 public class TargetRequest {
-    @NotNull
+
     @Valid
     private List<ShoesDTO> shoesList;
 

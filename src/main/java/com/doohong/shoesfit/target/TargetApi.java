@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 public class TargetApi {
     @PostMapping("/test")
-    public String test(@RequestBody @Valid  TargetRequest dto){
+    public String test(@Valid @RequestBody TargetRequest dto){
 
         return "j";
     }
