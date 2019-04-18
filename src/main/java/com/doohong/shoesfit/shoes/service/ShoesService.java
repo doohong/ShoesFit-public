@@ -36,5 +36,9 @@ public class ShoesService {
 
     }
 
+    public int getShoesMaxIndex(){
+        return shoesRepository.findMaxId();
+    }
+
 
 }

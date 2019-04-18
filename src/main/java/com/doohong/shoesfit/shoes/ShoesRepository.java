@@ -9,7 +9,8 @@ import java.util.List;
 public interface ShoesRepository extends JpaRepository<Shoes,Long> {
     Shoes findByBrandAndNameAndSize(String brand,String name,int size);
     List<Shoes> findByBrandAndName(String brand, String name);
-    @Query("SELECT MAX(SHOES_ID) FROM SHOES")
+
+    @Query(value ="SELECT MAX(index) FROM Shoes ")
     int findMaxId();
 
 }
