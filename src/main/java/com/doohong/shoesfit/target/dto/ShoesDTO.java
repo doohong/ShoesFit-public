@@ -18,4 +18,10 @@ public class ShoesDTO {
 
     private int size;
 
+
+    public ShoesDTO(String brand,String name,int size){
+        this.brand=brand;
+        this.name = name;
+        this.size = size;
+    }
 }

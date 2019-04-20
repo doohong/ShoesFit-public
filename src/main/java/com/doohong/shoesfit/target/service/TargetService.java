@@ -1,5 +1,6 @@
 package com.doohong.shoesfit.target.service;
 
+import com.doohong.shoesfit.error.ErrorCode;
 import com.doohong.shoesfit.relation.domain.Relation;
 import com.doohong.shoesfit.relation.service.RelationSaveService;
 import com.doohong.shoesfit.relation.service.RelationService;
@@ -9,33 +10,42 @@ import com.doohong.shoesfit.shoes.service.ShoesService;
 import com.doohong.shoesfit.target.dto.TargetRequest;
 import com.doohong.shoesfit.target.dto.TargetResponse;
 import com.doohong.shoesfit.target.exception.TargetNotFoundException;
+import com.doohong.shoesfit.target.validation.TargetVelidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.doohong.shoesfit.error.ErrorCode.TARGET_NOT_FOUND;
+
+
 
 @Service
 @RequiredArgsConstructor
 public class TargetService {
-    private ShoesSaveService shoesSaveService;
-    private ShoesService shoesService;
-    private RelationSaveService relationSaveService;
-    private RelationService relationService;
+    private final ShoesSaveService shoesSaveService;
+    private final ShoesService shoesService;
+    private final RelationSaveService relationSaveService;
+    private final RelationService relationService;
+    private final TargetVelidation targetVelidation;
 
     // 타켓 검색
-    public TargetResponse targetFind(TargetRequest dto){
+    public TargetResponse findTarget(TargetRequest dto){
+
+        targetVelidation.validation(dto);
         List<Shoes> shoesList = shoesSaveService.shoesSave(dto.getShoesList());
         List<Relation> relationList = new ArrayList<>();
         List<List<int[]>> targetSizeList = new ArrayList<>();
+        // 신발 관계 저장
         if(shoesList.size()>1){
             relationList=relationSaveService.relationSave(shoesList);
         }
-        List<Shoes> targetList = shoesService.findTargetList(dto.getTartget());
-        if(targetList.size()==0) throw new TargetNotFoundException(TARGET_NOT_FOUND);
+        // 타겟의 모든 사이즈 가져오기
+        List<Shoes> targetList = shoesService.findTargetList(dto.getTarget());
+        if(targetList==null) throw new TargetNotFoundException(ErrorCode.TARGET_NOT_FOUND);
+
         boolean targetCheck = false;
+
         for(Shoes shoes : shoesList){
             int shoesIndex=shoes.getIndex();
             int[][] relationArray = relationService.getRelationArray(shoesService.getShoesMaxIndex());
@@ -59,7 +69,14 @@ public class TargetService {
             }
             targetSizeList.add(sizeCountList);
         }
-        if(targetCheck) throw new TargetNotFoundException(TARGET_NOT_FOUND);
-        return TargetResponse.builder().shoesList(shoesList).relationList(relationList).targetDTO(dto.getTartget()).targetSizeList(targetSizeList).build();
+
+        if(!targetCheck) throw new TargetNotFoundException(ErrorCode.TARGET_NOT_FOUND);
+        return TargetResponse.builder().shoesList(shoesList).relationList(relationList).targetDTO(dto.getTarget()).targetSizeList(targetSizeList).build();
     }
+    public boolean test(String dto){
+        System.out.println(dto);
+        return true;
+
+    }
+
 }

@@ -9,7 +9,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RelationService {
-    private RelationRepository relationRepository;
+    private final RelationRepository relationRepository;
 
     public int[][] getRelationArray(int size){
         List<Relation> relationList = relationRepository.findAll();

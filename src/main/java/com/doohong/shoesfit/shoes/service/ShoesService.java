@@ -12,7 +12,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class ShoesService {
-    private ShoesRepository shoesRepository;
+    private final ShoesRepository shoesRepository;
 
     public ShoesResponse getShoesList(){
         Set<String> brandSet = new HashSet<>();

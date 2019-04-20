@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class RelationSaveService {
-    private RelationRepository relationRepository;
+    private final RelationRepository relationRepository;
     public List<Relation> relationSave(List<Shoes> shoesList){
         List<Relation> relationList = new ArrayList<>();
         for(Shoes shoes1 : shoesList){

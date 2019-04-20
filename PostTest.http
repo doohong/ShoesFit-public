@@ -5,11 +5,46 @@
 # * 'ptr' and 'ptrp' create a POST request with a simple or parameter-like body;
 # * 'mptr' and 'fptr' create a POST request to submit a form with a text or file field (multipart/form-data);
 
-POST http://localhost:8080/test
+POST http://localhost:8080/events/target
 Content-Type: application/json
 
 {
-  "shoesList": [{"name": "asda"}]
+  "shoesList":
+  [
+    {"brand":"나이키","name":"코르테즈","size":265},
+    {"brand":"아디다스","name":"슈퍼스타","size":260}
+  ],
+  "target":
+  {"brand":"컨버스","name":"척테일러"}
+}
+###
+POST http://localhost:8080/events/target
+Content-Type: application/json
+
+{
+"shoesList":
+[
+{"brand":"나이키","name":"코르테즈","size":265},
+{"brand":"컨버스","name":"척테일러","size":260}
+],
+"target":
+{"brand":"아디다스","name":"슈퍼스타"}
 }
 
+###
+POST http://localhost:8080/events/target
+Content-Type: application/json
+
+{
+  "shoesList":
+  [
+    {"brand":"나이키","name":"코르테즈","size":265},
+    {"brand":"나이키","name":"코르테즈","size":260}
+  ],
+  "target":
+  {"brand":"아디다스","name":"슈퍼스타"}
+}
+
+
+###
 ###

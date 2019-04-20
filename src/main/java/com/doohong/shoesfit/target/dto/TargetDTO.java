@@ -15,4 +15,9 @@ public class TargetDTO {
     private String brand;
     @NotNull
     private String name;
+
+    public TargetDTO(String brand, String name){
+        this.brand = brand;
+        this.name = name;
+    }
 }
