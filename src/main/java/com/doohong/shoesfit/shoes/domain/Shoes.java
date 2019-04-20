@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(
-        name = "shoes",
+        name = "SHOES",
         uniqueConstraints = {
                 @UniqueConstraint(
                         columnNames = {"brand", "name", "size"}
@@ -25,7 +25,7 @@ public class Shoes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SHOES_ID")
-    private Long index;
+    private Integer index;
 
     private String brand;
 

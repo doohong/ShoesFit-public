@@ -32,13 +32,5 @@ public class RelationSaveService {
         return relationList;
 
     }
-    public int[][] getRelationArray(int size){
-        List<Relation> relationList = relationRepository.findAll();
-        int[][] relationArray = new int[size + 1][size + 1];
-        for (Relation relation : relationList) {
-            relationArray[relation.getShoes1().getIndex().intValue()][relation.getShoes2().getIndex().intValue()] = relation.getCount();
-            relationArray[relation.getShoes2().getIndex().intValue()][relation.getShoes1().getIndex().intValue()] = relation.getCount();
-        }
-        return relationArray;
-    }
+
 }

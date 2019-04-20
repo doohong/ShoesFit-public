@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(
-        name = "relation",
+        name = "RELATION",
         uniqueConstraints = {
                 @UniqueConstraint(
                         columnNames = {"SHOES1_ID", "SHOES2_ID"}
@@ -21,8 +21,8 @@ import javax.persistence.*;
 public class Relation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Relation_ID")
-    private Long index;
+    @Column(name = "RELATION_ID")
+    private Integer index;
 
     @ManyToOne
     @JoinColumnsOrFormulas(value = {

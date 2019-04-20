@@ -14,7 +14,6 @@ public class TargetResponse {
     private List<Shoes> shoesList;
     private List<Relation> relationList;
     private TargetDTO targetDTO;
-    private Map<Integer,Integer> targetSizeByShoes1;
-    private Map<Integer,Integer> targetSizeByShoes2;
+    private List<List<int[]>> targetSizeList;
 
 }

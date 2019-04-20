@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface ShoesRepository extends JpaRepository<Shoes,Long> {
+public interface ShoesRepository extends JpaRepository<Shoes,Integer> {
     Shoes findByBrandAndNameAndSize(String brand,String name,int size);
     List<Shoes> findByBrandAndName(String brand, String name);
 
-    @Query(value ="SELECT MAX(index) FROM Shoes ")
+    @Query(value ="SELECT ISNULL(MAX(SHOES_ID),1) FROM SHOES", nativeQuery = true)
     int findMaxId();
 
 }

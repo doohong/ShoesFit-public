@@ -25,4 +25,11 @@ public class GlobalExceptionHandler{
         final ErrorResponse response = ErrorResponse.of(ErrorCode.INVALID_TYPE_VALUE, e.getBindingResult());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(BusinessException.class)
+    protected ResponseEntity<ErrorResponse> handleBusinessException(final BusinessException e) {
+        log.error("handleBusinessException", e);
+        final ErrorCode errorCode = e.getErrorCode();
+        final ErrorResponse response = ErrorResponse.of(errorCode);
+        return new ResponseEntity<>(response, HttpStatus.valueOf(errorCode.getStatus()));
+    }
 }
