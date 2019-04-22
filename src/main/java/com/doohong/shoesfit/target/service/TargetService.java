@@ -42,9 +42,9 @@ public class TargetService {
         }
         // 타겟의 모든 사이즈 가져오기
         List<Shoes> targetList = shoesService.findTargetList(dto.getTarget());
-        if(targetList==null) throw new TargetNotFoundException(ErrorCode.TARGET_NOT_FOUND);
+        //if(targetList==null) throw new TargetNotFoundException(ErrorCode.TARGET_NOT_FOUND);
 
-        boolean targetCheck = false;
+        //boolean targetCheck = false;
 
         for(Shoes shoes : shoesList){
             int shoesIndex=shoes.getIndex();
@@ -63,14 +63,14 @@ public class TargetService {
             for(Shoes target : targetList){
                 int targetIndex = target.getIndex();
                 if(relationArray[shoesIndex][targetIndex]!=0){
-                    targetCheck = true;
+                    //targetCheck = true;
                     sizeCountList.add(new int[]{target.getSize(),relationArray[shoesIndex][targetIndex]});
                 }
             }
             targetSizeList.add(sizeCountList);
         }
 
-        if(!targetCheck) throw new TargetNotFoundException(ErrorCode.TARGET_NOT_FOUND);
+        //if(!targetCheck) throw new TargetNotFoundException(ErrorCode.TARGET_NOT_FOUND);
         return TargetResponse.builder().shoesList(shoesList).relationList(relationList).targetDTO(dto.getTarget()).targetSizeList(targetSizeList).build();
     }
     public boolean test(String dto){

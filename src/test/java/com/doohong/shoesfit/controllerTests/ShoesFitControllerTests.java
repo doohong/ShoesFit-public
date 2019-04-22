@@ -5,6 +5,7 @@ import com.doohong.shoesfit.target.dto.ShoesDTO;
 import com.doohong.shoesfit.target.dto.TargetDTO;
 import com.doohong.shoesfit.target.dto.TargetRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jdk.net.SocketFlow;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -44,7 +46,10 @@ public class ShoesFitControllerTests {
         mockMvc.perform(post("/events/target")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(targetRequest)))
-                .andDo(print());
+                .andDo(print())
+                .andExpect(status().isOk())
+
+        ;
     }
 
 }
