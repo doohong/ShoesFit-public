@@ -12,7 +12,7 @@ import java.util.Set;
 @Getter
 @Builder
 public class ShoesResponse {
-    private Set<String> brandSet;
-    private Set<String> nameSet;
-    private Map<String, Set<String>> brandNameMap;
+    private Set<String> brandList;
+    private Set<String> nameList;
+    private Map<String, Set<String>> brandNameList;
 }

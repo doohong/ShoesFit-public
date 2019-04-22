@@ -47,4 +47,9 @@ Content-Type: application/json
 
 
 ###
+POST http://localhost:8080/events/list
+Content-Type: application/json
+
+{
+}
 ###

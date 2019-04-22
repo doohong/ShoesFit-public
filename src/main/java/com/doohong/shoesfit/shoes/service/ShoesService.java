@@ -28,7 +28,7 @@ public class ShoesService {
             brandNameSet.add(shoes.getName());
             brandNameMap.put(shoes.getBrand(),brandNameSet);
         }
-        return ShoesResponse.builder().brandSet(brandSet).nameSet(nameSet).brandNameMap(brandNameMap).build();
+        return ShoesResponse.builder().brandList(brandSet).nameList(nameSet).brandNameList(brandNameMap).build();
 
     }
     public List<Shoes> findTargetList(TargetDTO targetDTO){

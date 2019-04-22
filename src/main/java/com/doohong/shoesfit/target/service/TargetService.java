@@ -73,10 +73,5 @@ public class TargetService {
         //if(!targetCheck) throw new TargetNotFoundException(ErrorCode.TARGET_NOT_FOUND);
         return TargetResponse.builder().shoesList(shoesList).relationList(relationList).targetDTO(dto.getTarget()).targetSizeList(targetSizeList).build();
     }
-    public boolean test(String dto){
-        System.out.println(dto);
-        return true;
-
-    }
 
 }

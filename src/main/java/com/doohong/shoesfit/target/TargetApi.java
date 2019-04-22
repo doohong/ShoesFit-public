@@ -24,7 +24,7 @@ public class TargetApi {
 
     @PostMapping(value = "/target")
     public ResponseEntity findTarget(@RequestBody @Valid TargetRequest dto){
-        System.out.println(dto.getShoesList().toString());
+
         TargetResponse targetResponse = targetService.findTarget(dto);
         return new ResponseEntity<>(targetResponse,HttpStatus.OK);
     }

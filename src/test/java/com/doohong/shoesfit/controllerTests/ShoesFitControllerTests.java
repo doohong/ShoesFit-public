@@ -20,6 +20,7 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -33,7 +34,7 @@ public class ShoesFitControllerTests {
 
 
     @Test
-    public void test() throws Exception {
+    public void find_Target_Right_Value() throws Exception {
         ShoesDTO shoesDTO1 = new ShoesDTO("나이키","코르테즈",265);
         ShoesDTO shoesDTO2 = new ShoesDTO("컨버스","척테일러",260);
         TargetDTO target = new TargetDTO("아디다스","슈퍼스타");
@@ -49,6 +50,57 @@ public class ShoesFitControllerTests {
                 .andDo(print())
                 .andExpect(status().isOk())
 
+        ;
+    }
+    @Test
+    public void find_Target_Same_Value() throws Exception {
+        ShoesDTO shoesDTO1 = new ShoesDTO("나이키","코르테즈",265);
+        ShoesDTO shoesDTO2 = new ShoesDTO("나이키","코르테즈",260);
+        TargetDTO target = new TargetDTO("아디다스","슈퍼스타");
+        List<ShoesDTO> shoesList = new ArrayList<>();
+        shoesList.add(shoesDTO1);
+        shoesList.add(shoesDTO2);
+        TargetRequest targetRequest = new TargetRequest(shoesList,target);
+
+
+        mockMvc.perform(post("/events/target")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(objectMapper.writeValueAsString(targetRequest)))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("code").value("SS_001"))
+
+        ;
+    }
+    @Test
+    public void find_Target_Same_Target() throws Exception {
+        ShoesDTO shoesDTO1 = new ShoesDTO("나이키","코르테즈",265);
+        ShoesDTO shoesDTO2 = new ShoesDTO("아디다스","슈퍼스타",260);
+        TargetDTO target = new TargetDTO("나이키","코르테즈");
+        List<ShoesDTO> shoesList = new ArrayList<>();
+        shoesList.add(shoesDTO1);
+        shoesList.add(shoesDTO2);
+        TargetRequest targetRequest = new TargetRequest(shoesList,target);
+
+
+        mockMvc.perform(post("/events/target")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(objectMapper.writeValueAsString(targetRequest)))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("code").value("TN_001"))
+
+        ;
+    }
+    @Test
+    public void get_List() throws Exception {
+
+
+        mockMvc.perform(post("/events/list")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content("{}"))
+                .andDo(print())
+                .andExpect(status().isOk())
         ;
     }
 
