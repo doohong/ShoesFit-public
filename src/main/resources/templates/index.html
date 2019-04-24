@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <title>ShoesFit</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="../css/main.css"/>
+</head>
+
+<body>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/skel.min.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/main.js"></script>
+<script src="../js/index.js"></script>
+<!-- Header -->
+<header id="header">
+    <div class="inner">
+        <a href="/" class="logo"><strong>ShoesFit</strong></a>
+        <nav id="nav">
+            <a href="/">Home</a>
+            <a href="/">미정</a>
+            <a href="/">미정</a>
+        </nav>
+        <a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+    </div>
+</header>
+
+<!-- Banner -->
+<section id="banner">
+    <div class="inner">
+        <header>
+            <h1>신발사이즈 추천 서비스</h1>
+        </header>
+
+
+        <footer>
+            <a id="startBtn" class="button">Get Started</a>
+        </footer>
+    </div>
+</section>
+
+
+<!-- Three -->
+<section id="three" class="wrapper align-center">
+    <div class="inner">
+        <h3>사용방법</h3>
+        <div class="flex flex-2">
+            <article>
+                <div class="image round">
+                    <img src="../images/one.png" class="number"/>
+                </div>
+                <header>
+                    <h4>가지고 있는 신발 2개를 입력해주세요<br/>찾으시는 신발을 입력해주세요</h4>
+                </header>
+                <p><br/>값을 허위적으로 적지 말아주세요<br/>다른사람들에게 중요한 정보가 됩니다 ㅠㅠ.<br/>비슷한 이름이 자동완성에 있다면 자동완성에 있는 이름을 이용해주세요</p>
+            </article>
+            <article>
+                <div class="image round">
+                    <img src="../images/two.png" class="number"/>
+                </div>
+                <header>
+                    <h4>신발 두개로 검색 버튼을 눌러주세요<br/>결과가 나올꺼에요!</h4>
+                </header>
+                <p>결과가 없더라도 너무 슬퍼하지 말아요<br/>데이터가 쌓이면 다시 찾을 수 있을거에요</p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer id="footer">
+    <div class="inner">
+
+        <h3 id="footerText">신발 입력</h3>
+
+        <div class="flex flex-3" id="shoes1Div">
+
+            <div>
+                <label for="brand1">brand</label>
+                <input id="brand1" type="text" class="brand" placeholder="신발1 브랜드">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+                <div>
+                    <ul class="brandUl" style="display:none;">
+                        <li class="brandLi notHide" style="display: none"><span class="regular"></span><span
+                                class="orange"></span><span class="regular"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label for="name1">name</label>
+                <input id="name1" type="text" class="name" placeholder="신발1 이름">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+                <div>
+                    <ul class="nameUl" style="display:none;">
+                        <li class="nameLi notHide" style="display: none"><span class="regular"></span><span
+                                class="orange"></span><span class="regular"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label for="size1">size</label>
+                <input id="size1" type="tel" placeholder="신발1 사이즈">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+            </div>
+
+        </div>
+        <div class="flex flex-3" id="shoes2Div">
+
+            <div>
+                <label for="brand2">brand</label>
+                <input id="brand2" class="brand" type="text" placeholder="신발2 브랜드">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+                <div>
+                    <ul class="brandUl" style="display:none">
+                        <li class="brandLi notHide" style="display: none"><span class="regular"></span><span
+                                class="orange"></span><span class="regular"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label for="name2">name</label>
+                <input id="name2" type="text" class="name" placeholder="신발2 이름">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+                <div>
+                    <ul class="nameUl" style="display:none">
+                        <li class="nameLi notHide" style="display: none"><span class="regular"></span><span
+                                class="orange"></span><span class="regular"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label for="size2">size</label>
+                <input id="size2" type="tel" placeholder="신발2 사이즈">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+            </div>
+
+        </div>
+        <div class="flex flex-2" id="targetDiv">
+
+            <div>
+                <label for="targetBrand">brand</label>
+                <input id="targetBrand" type="text" class="targetShoes brand" placeholder="찾는 신발 브랜드">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+                <div>
+                    <ul class="brandUl" style="display:none">
+                        <li class="brandLi notHide" style="display: none"><span class="regular"></span><span
+                                class="orange"></span><span class="regular"></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label for="targetName">name</label>
+                <input id="targetName" type="text" class="targetShoes name" placeholder="찾는 신발 이름">
+                <label for="brand1" class="warning" style="display:none">이 값을 입력해주세요</label>
+                <div>
+                    <ul class="nameUl" style="display:none">
+                        <li class="nameLi notHide" style="display: none"><span class="regular"></span><span
+                                class="orange"></span><span class="regular"></span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="btnDiv">
+            <ul class="actions">
+                <li><input value="신발 한개로 검색" id="oneShoesBtn" class="button alt" type="submit"></li>
+                <li><input value="신발 두개로 검색" id="twoShoesBtn" class="button alt" type="submit"></li>
+            </ul>
+        </div>
+        <div id="answerDiv" style="display:none">
+            <p id="targetBrandName"></p>
+            <p id="recommendMsg"></p>
+            <div id="shoes1AnswerDiv"><span id="shoes1RecommendSize"></span></div>
+            <div id="shoes2AnswerDiv"><span id="shoes2RecommendSize"></span></div>
+            <ul class="actions">
+                <li><input value="확인" id="confirmBtn" class="button alt" type="submit"></li>
+            </ul>
+        </div>
+        <div class="copyright">
+            &copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a
+                href="https://unsplash.com">Unsplash</a>.
+        </div>
+
+    </div>
+</footer>
+</body>
+</html>
