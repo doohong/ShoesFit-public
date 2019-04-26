@@ -139,6 +139,10 @@ function getList() {
 }
 
 function checkValue(flag) {
+    var shoes1 = new Object();
+    var shoes2 = new Object();
+    var shoesList =[];
+    var target = new Object();
     var shoes = new Object();
     var inputflag = true;
     //신발1
@@ -147,7 +151,7 @@ function checkValue(flag) {
             $(this).siblings(".warning").show();
             inputflag = false;
         }
-        shoes[$(this).attr("id")] = $(this).val();
+        shoes[$(this).attr("class")] = $(this).val();
     })
     //타겟
     $("#targetDiv input").each(function () {
@@ -156,7 +160,7 @@ function checkValue(flag) {
             inputflag = false;
             return;
         }
-        shoes[$(this).attr("id")] = $(this).val();
+        target[$(this).attr("class")] = $(this).val();
     })
     if (flag == 2) {
         //신발2
@@ -166,15 +170,18 @@ function checkValue(flag) {
                 inputflag = false;
                 return;
             }
-            shoes[$(this).attr("id")] = $(this).val();
+            shoes2[$(this).attr("class")] = $(this).val();
         })
         if (inputflag) {
-            JSON.stringify(shoes);
+            shoesList.push(shoes1,shoes2);
+            shoes.push(shoesList,target);
             searchTargetByTwoShoes(shoes);
         }
     }
     if (flag == 1) {
         if (inputflag) {
+            shoesList.push(shoes1);
+            shoes.push(shoesList,target);
             searchTargetByOneShoes(shoes);
         }
     }
@@ -189,7 +196,7 @@ function searchTargetByOneShoes(shoes) {
     shoes = JSON.stringify(shoes);
     ajaxFlag = false;
     $.ajax({
-        url: "/shoes/findOne",
+        url: "/events/target",
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
@@ -219,7 +226,7 @@ function searchTargetByTwoShoes(shoes) {
     shoes = JSON.stringify(shoes);
     ajaxFlag = false;
     $.ajax({
-        url: "/shoes/findTwo",
+        url: "/events/target",
         type: 'post',
         dataType: 'json',
         contentType: 'application/json',
