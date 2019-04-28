@@ -143,7 +143,7 @@ function checkValue(flag) {
     var shoes2 = new Object();
     var shoesList =[];
     var target = new Object();
-    var shoes = new Object();
+    var shoes =new Object();
     var inputflag = true;
     //신발1
     $("#shoes1Div input").each(function () {
@@ -151,7 +151,7 @@ function checkValue(flag) {
             $(this).siblings(".warning").show();
             inputflag = false;
         }
-        shoes[$(this).attr("class")] = $(this).val();
+        shoes1[$(this).attr("class")] = $(this).val();
     })
     //타겟
     $("#targetDiv input").each(function () {
@@ -174,14 +174,16 @@ function checkValue(flag) {
         })
         if (inputflag) {
             shoesList.push(shoes1,shoes2);
-            shoes.push(shoesList,target);
+            shoes.shoesList=shoesList;
+            shoes.target=target;
             searchTargetByTwoShoes(shoes);
         }
     }
     if (flag == 1) {
         if (inputflag) {
             shoesList.push(shoes1);
-            shoes.push(shoesList,target);
+            shoes.shoesList=shoesList;
+            shoes.target=target;
             searchTargetByOneShoes(shoes);
         }
     }
