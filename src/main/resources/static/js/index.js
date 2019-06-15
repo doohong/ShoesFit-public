@@ -176,7 +176,7 @@ function checkValue(flag) {
             shoesList.push(shoes1,shoes2);
             shoes.shoesList=shoesList;
             shoes.target=target;
-            searchTargetByTwoShoes(shoes);
+            searchTarget(shoes);
         }
     }
     if (flag == 1) {
@@ -184,16 +184,12 @@ function checkValue(flag) {
             shoesList.push(shoes1);
             shoes.shoesList=shoesList;
             shoes.target=target;
-            searchTargetByOneShoes(shoes);
+            searchTarget(shoes);
         }
     }
 }
 
-/**
- *
- * 수정 필요
- */
-function searchTargetByOneShoes(shoes) {
+function searchTarget(shoes) {
 
     shoes = JSON.stringify(shoes);
     ajaxFlag = false;
@@ -218,40 +214,6 @@ function searchTargetByOneShoes(shoes) {
 
 }
 
-/**
- *
- * 수정 필요
- */
-
-function searchTargetByTwoShoes(shoes) {
-
-    shoes = JSON.stringify(shoes);
-    ajaxFlag = false;
-    $.ajax({
-        url: "/events/target",
-        type: 'post',
-        dataType: 'json',
-        contentType: 'application/json',
-        data: shoes,
-        success: function (data) {
-            answer = data;
-            makeAnswer(data);
-        },
-        error: function (error) {
-            console.log(error);
-        },
-        complete: function () {
-            ajaxFlag = true;
-        }
-    });
-
-
-}
-
-/**
- *
- * 수정 필요
- */
 function makeAnswer(targetData) {
     $("#footerText").val("검색결과");
     $("#shoes1Div").hide();
@@ -259,26 +221,34 @@ function makeAnswer(targetData) {
     $("#targetDiv").hide();
     $("#btnDiv").hide();
     $("#answerDiv").show();
-    $("#targetBrandName").text(targetData.targetShoes.brand + targetData.targetShoes.name)
-    if (targetData.targetSize.shoes1Count == 0 && (targetData.targetSize.shoes2Count == null || targetData.targetSize.shoes2Count == 0)) {
+    $("#targetBrandName").text(targetData.targetDTO.brand + targetData.targetDTO.name)
+    if (targetData.targetSizeList[0].length == 0 && (targetData.targetSizeList[1] == null || targetData.targetSizeList[1].length == 0)) {
         $("#recommendMsg").text("검색결과가 존재하지 않습니다. 다른 신발로 검색 부탁드립니다.");
         return;
     }
-    if (targetData.targetSize.shoes1Count != 0) {
-        var percent = 100 / targetData.targetSize.shoes1Count;
-        var text = targetData.shoes[0].brand + targetData.shoes[0].name + "의 검색 결과";
-        for (var i = 0; i < targetData.targetSize.shoes1.length; i++) {
-            text += targetData.targetSize.shoes1[i][0] + "사이즈" + percent * targetData.targetSize.shoes1[i][1] + "%(" + targetData.targetSize.shoes1[i][1] + ")";
+    if (targetData.targetSizeList[0].lenght!=0) {
+        var allCount=0;
+        for(var obj of targetData.targetSizeList[0]){
+            allCount += obj[1];
+        }
+        var percent = 100 / allCount;
+        var text = targetData.shoesList[0].brand + targetData.shoesList[0].name + "의 검색 결과";
+        for (var targetObj of targetData.targetSizeList[0]) {
+            text += targetObj[0] + "사이즈" + percent * targetObj[1] + "%(" + targetObj[1] + ") \n";
         }
         text += "추천 드립니다."
         $("#shoes1RecommendSize").text(text);
     }
 
-    if (targetData.targetSize.shoes2Count != 0 && targetData.targetSize.shoes2Count != null) {
-        var percent = 100 / targetData.targetSize.shoes2Count;
-        var text = targetData.shoes[1].brand + targetData.shoes[1].name + "의 검색 결과";
-        for (var i = 0; i < targetData.targetSize.shoes2.length; i++) {
-            text += targetData.targetSize.shoes2[i][0] + "사이즈" + percent * targetData.targetSize.shoes2[i][1] + "%(" + targetData.targetSize.shoes2[i][1] + ")";
+    if (targetData.targetSizeList[1].length != 0 && targetData.targetSizeList[1] != null) {
+        var allCount=0;
+        for(var obj of targetData.targetSizeList[1]){
+            allCount += obj[1];
+        }
+        var percent = 100 / allCount;
+        var text = targetData.shoesList[1].brand + targetData.shoesList[1].name + "의 검색 결과";
+        for (var targetObj of targetData.targetSizeList[1]) {
+            text += targetObj[0] + "사이즈" + percent * targetObj[1] + "%(" + targetObj[1] + ") \n";
         }
         text += "추천 드립니다."
         $("#shoes2RecommendSize").text(text);
