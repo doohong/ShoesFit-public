@@ -9,10 +9,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(
-        name = "RELATION",
+        name = "tbl_r_shoes",
         uniqueConstraints = {
                 @UniqueConstraint(
-                        columnNames = {"SHOES1_ID", "SHOES2_ID"}
+                        columnNames = {"shoes1_no", "shoes2_no"}
                 )
         }
 )
@@ -21,26 +21,26 @@ import javax.persistence.*;
 public class Relation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RELATION_ID")
+    @Column(name = "r_shoes_no")
     private Integer index;
 
     @ManyToOne
     @JoinColumnsOrFormulas(value = {
             @JoinColumnOrFormula(column =
-            @JoinColumn(name = "SHOES1_ID",
-                    referencedColumnName = "SHOES_ID")),
+            @JoinColumn(name = "shoes1_no",
+                    referencedColumnName = "shoes_no")),
     })
     private Shoes shoes1;
 
     @ManyToOne
     @JoinColumnsOrFormulas(value = {
             @JoinColumnOrFormula(column =
-            @JoinColumn(name = "SHOES2_ID",
-                    referencedColumnName = "SHOES_ID")),
+            @JoinColumn(name = "shoes2_no",
+                    referencedColumnName = "shoes_no")),
     })
     private Shoes shoes2;
 
-    @Column(columnDefinition = "INT default 1")
+    @Column(name = "r_shoes_count", columnDefinition = "INT default 1")
     private int count;
 
     public Relation(Shoes shoes1,Shoes shoes2){
