@@ -9,32 +9,39 @@ import com.doohong.shoesfit.member.MemberRoleRepository;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.thymeleaf.expression.Sets;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 
 @RequiredArgsConstructor
+@Service
 public class MemberSaveService {
     private final MemberRepository memberRepository;
     private final MemberRoleRepository memberRoleRepository;
     private final PasswordEncoder passwordEncoder;
 
     public MemberResponse saveMember(MemberDTO memberDTO){
+        memberRoleRepository.save(MemberRole.builder().role("ADMIN").build());
         MemberRole memberRole = memberRoleRepository.findByRole("ADMIN");
+        System.out.println(memberRole.toString());
         Member member = Member.builder()
                 .email(memberDTO.getEmail())
                 .password(passwordEncoder.encode(memberDTO.getPassword()))
                 .name(memberDTO.getName())
                 .active(1)
-                .roles(new HashSet<MemberRole>(Arrays.asList(memberRole)))
+                .roles(new ArrayList<MemberRole>(Arrays.asList(memberRole)))
                 .build();
-        memberRepository.save(member);
+        Member savemember =  memberRepository.save(member);
+        System.out.println(savemember.getRoles().toString());
         return MemberResponse.builder()
-                .email(member.getEmail())
-                .password(member.getPassword())
-                .name(member.getName())
-                .active(member.getActive())
-                .roles(member.getRoles())
+                .email(savemember.getEmail())
+                .password(savemember.getPassword())
+                .name(savemember.getName())
+                .active(savemember.getActive())
+                .roles(savemember.getRoles())
                 .build();
 
 

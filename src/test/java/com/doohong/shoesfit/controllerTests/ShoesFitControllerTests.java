@@ -1,6 +1,9 @@
 package com.doohong.shoesfit.controllerTests;
 
 
+import com.doohong.shoesfit.member.MemberRepository;
+import com.doohong.shoesfit.member.domain.MemberRole;
+import com.doohong.shoesfit.member.dto.MemberDTO;
 import com.doohong.shoesfit.target.dto.ShoesDTO;
 import com.doohong.shoesfit.target.dto.TargetDTO;
 import com.doohong.shoesfit.target.dto.TargetRequest;
@@ -102,5 +105,13 @@ public class ShoesFitControllerTests {
                 .andExpect(status().isOk())
         ;
     }
-
+    @Test
+    public void registration() throws Exception{
+        MemberDTO memberDTO = MemberDTO.builder().email("wnghd94@gmail.com").password("123").name("박주홍").build();
+        mockMvc.perform(post("/member/registration")
+        .contentType(MediaType.APPLICATION_JSON_UTF8)
+        .content(objectMapper.writeValueAsString(memberDTO)))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -17,5 +18,5 @@ public class MemberResponse {
     private int active;
     private LocalDateTime regdate;
     private LocalDateTime moddate;
-    private Set<MemberRole> roles;
+    private List<MemberRole> roles;
 }

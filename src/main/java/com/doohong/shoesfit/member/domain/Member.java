@@ -8,6 +8,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -45,6 +46,6 @@ public class Member {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_no"), inverseJoinColumns = @JoinColumn(name = "role_no"))
-    private Set<MemberRole> roles;
+    private List<MemberRole> roles;
 
 }
