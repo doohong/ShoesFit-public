@@ -1,5 +1,6 @@
 package com.doohong.shoesfit.member;
 
+import com.doohong.shoesfit.member.dto.LoginMemberDTO;
 import com.doohong.shoesfit.member.dto.MemberDTO;
 import com.doohong.shoesfit.member.dto.MemberResponse;
 import com.doohong.shoesfit.member.service.MemberSaveService;
@@ -22,4 +23,6 @@ public class MemberApi {
     public ResponseEntity<MemberResponse> registration(@RequestBody @Valid MemberDTO memberDTO){
         return new ResponseEntity<>(memberSaveService.saveMember(memberDTO), HttpStatus.OK);
     }
+
+
 }
