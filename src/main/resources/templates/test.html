@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/dropzone.js"></script>
+</head>
+<body>
+<form action="localhost:8080/test" method="post" enctype="multipart/form-data">
+    <input type="file" name="file">
+</form>
+
+<form action="/file-upload" class="dropzone">
+    <div class="fallback">
+        <input name="file" type="file" multiple />
+    </div>
+</form>
+
+</body>
+</html>

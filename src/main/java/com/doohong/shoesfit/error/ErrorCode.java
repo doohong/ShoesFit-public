@@ -11,7 +11,9 @@ public enum ErrorCode {
     SHOES_NOT_SAME("SS_001","같은 신발을 등록할 수 없습니다.", 400),
     //COMMON
     INVALID_TYPE_VALUE("IV_001","입력값을 확인해 주세요",400),
-    METHOD_NOT_ALLOWED("MN_001","유효하지 않는 URL입니다.",400)
+    METHOD_NOT_ALLOWED("MN_001","유효하지 않는 URL입니다.",400),
+    // SECURITY
+    MEMBER_NOT_FOUND("LM_001","존재하지 않는 사용자 입니다.",400)
     ;
     private final String code;
     private final String message;
