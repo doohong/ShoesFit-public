@@ -131,7 +131,7 @@ public class ShoesFitControllerTests {
 
     }
     @Test
-    public void login_found_user() throws Exception {
+    public void login_success() throws Exception {
         MemberDTO memberDTO = MemberDTO.builder().email("wnghd95@naver.com").password("123").name("박주홍").build();
         mockMvc.perform(post("/api/member/registration")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -144,6 +144,22 @@ public class ShoesFitControllerTests {
                 .content(objectMapper.writeValueAsString(loginMemberDTO)))
                 .andDo(print())
                 .andExpect(status().isOk());
+
+    }
+    @Test
+    public void login_differ_password() throws Exception {
+        MemberDTO memberDTO = MemberDTO.builder().email("wnghd95@naver.com").password("123").name("박주홍").build();
+        mockMvc.perform(post("/api/member/registration")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(objectMapper.writeValueAsString(memberDTO)))
+                .andDo(print());
+
+        LoginMemberDTO loginMemberDTO = LoginMemberDTO.builder().username("wnghd95@naver.com").password("1234").build();
+        mockMvc.perform(post("/api/member/login")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(objectMapper.writeValueAsString(loginMemberDTO)))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
 
     }
 }
