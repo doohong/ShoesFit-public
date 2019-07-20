@@ -9,4 +9,9 @@ public class ViewController {
     public String main(){
         return "index";
     }
+    @GetMapping(value="/test")
+    public String test(){
+        return "test";
+    }
+
 }

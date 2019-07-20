@@ -1,7 +1,9 @@
 package com.doohong.shoesfit.member.domain;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -15,8 +17,9 @@ import java.util.Set;
 @Table(name="tbl_user",uniqueConstraints = {
         @UniqueConstraint(columnNames = "member_email")
 })
-@Builder
+
 @Getter
+@NoArgsConstructor(access= AccessLevel.PROTECTED)
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +51,12 @@ public class Member {
     @JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_no"), inverseJoinColumns = @JoinColumn(name = "role_no"))
     private List<MemberRole> roles;
 
+    @Builder
+    public Member(String email, String password, @NotEmpty(message = "*Please provide your name") String name, List<MemberRole> roles,int active) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.roles = roles;
+        this.active = active;
+    }
 }

@@ -23,8 +23,7 @@ public class MemberSaveService {
     private final MemberRoleRepository memberRoleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public MemberResponse saveMember(MemberDTO memberDTO){
-        memberRoleRepository.save(MemberRole.builder().role("ADMIN").build());
+    public MemberResponse saveMember(MemberDTO memberDTO) {
         MemberRole memberRole = memberRoleRepository.findByRole("ADMIN");
         System.out.println(memberRole.toString());
         Member member = Member.builder()
@@ -34,7 +33,7 @@ public class MemberSaveService {
                 .active(1)
                 .roles(new ArrayList<MemberRole>(Arrays.asList(memberRole)))
                 .build();
-        Member savemember =  memberRepository.save(member);
+        Member savemember = memberRepository.save(member);
         System.out.println(savemember.getRoles().toString());
         return MemberResponse.builder()
                 .email(savemember.getEmail())

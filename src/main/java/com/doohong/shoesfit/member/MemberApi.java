@@ -23,23 +23,24 @@ import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(value="/member")
+@RequestMapping(value = "/api/member")
 public class MemberApi {
     private final MemberSaveService memberSaveService;
     private final CustomUserDetailsService customUserDetailsService;
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider jwtTokenProvider;
     private final MemberRepository memberRepository;
+
     @PostMapping(value = "/registration")
-    public ResponseEntity<MemberResponse> registration(@RequestBody @Valid MemberDTO memberDTO){
+    public ResponseEntity<MemberResponse> registration(@RequestBody @Valid MemberDTO memberDTO) {
         return new ResponseEntity<>(memberSaveService.saveMember(memberDTO), HttpStatus.OK);
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<LoginMemberResponse> login(@RequestBody @Valid LoginMemberDTO loginMemberDTO){
+    public ResponseEntity<LoginMemberResponse> login(@RequestBody @Valid LoginMemberDTO loginMemberDTO) {
         String userName = loginMemberDTO.getUsername();
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName,loginMemberDTO.getPassword()));
-        String token = jwtTokenProvider.createToken(userName,memberRepository.findByEmail(userName).getRoles());
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userName, loginMemberDTO.getPassword()));
+        String token = jwtTokenProvider.createToken(userName, memberRepository.findByEmail(userName).getRoles());
         LoginMemberResponse response = LoginMemberResponse.builder().email(userName).token(token).build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
