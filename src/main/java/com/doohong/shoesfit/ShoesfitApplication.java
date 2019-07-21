@@ -1,8 +1,7 @@
 package com.doohong.shoesfit;
 
-import com.doohong.shoesfit.member.MemberRoleRepository;
+import com.doohong.shoesfit.member.repository.MemberRoleRepository;
 import com.doohong.shoesfit.member.domain.MemberRole;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

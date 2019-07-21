@@ -1,20 +1,17 @@
 package com.doohong.shoesfit.member.service;
 
-import com.doohong.shoesfit.member.MemberRepository;
+import com.doohong.shoesfit.member.repository.MemberRepository;
 import com.doohong.shoesfit.member.domain.Member;
 import com.doohong.shoesfit.member.domain.MemberRole;
 import com.doohong.shoesfit.member.dto.MemberDTO;
 import com.doohong.shoesfit.member.dto.MemberResponse;
-import com.doohong.shoesfit.member.MemberRoleRepository;
-import lombok.AllArgsConstructor;
+import com.doohong.shoesfit.member.repository.MemberRoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Sets;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 
 @RequiredArgsConstructor
 @Service

@@ -4,22 +4,18 @@ import com.doohong.shoesfit.member.dto.LoginMemberDTO;
 import com.doohong.shoesfit.member.dto.LoginMemberResponse;
 import com.doohong.shoesfit.member.dto.MemberDTO;
 import com.doohong.shoesfit.member.dto.MemberResponse;
+import com.doohong.shoesfit.member.repository.MemberRepository;
 import com.doohong.shoesfit.member.service.MemberSaveService;
-import com.doohong.shoesfit.security.CustomUserDetailsService;
+import com.doohong.shoesfit.security.service.CustomUserDetailsService;
 import com.doohong.shoesfit.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -44,5 +40,6 @@ public class MemberApi {
         LoginMemberResponse response = LoginMemberResponse.builder().email(userName).token(token).build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 
 }

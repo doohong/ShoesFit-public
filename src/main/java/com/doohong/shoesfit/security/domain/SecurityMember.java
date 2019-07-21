@@ -1,4 +1,4 @@
-package com.doohong.shoesfit.security;
+package com.doohong.shoesfit.security.domain;
 
 
 import com.doohong.shoesfit.member.domain.Member;

@@ -1,6 +1,5 @@
 package com.doohong.shoesfit.config;
 
-import com.doohong.shoesfit.security.CustomUserDetailsService;
 import com.doohong.shoesfit.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,9 +55,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().authorizeRequests()
                 .antMatchers("/api/member/login").permitAll()
                 .antMatchers("/api/member/registration").permitAll()
-                .antMatchers("/api/products/**").hasAuthority("ADMIN").anyRequest().authenticated()
+                .antMatchers("/api/board/write").hasAuthority("ADMIN").anyRequest().authenticated()
                 .and().csrf().disable().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint()).and()
-                .apply(new JwtConfig());
+                .apply(new JwtConfig(jwtTokenProvider));
     }
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

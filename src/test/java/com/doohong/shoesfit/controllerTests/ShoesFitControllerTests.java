@@ -1,8 +1,6 @@
 package com.doohong.shoesfit.controllerTests;
 
 
-import com.doohong.shoesfit.member.MemberRepository;
-import com.doohong.shoesfit.member.domain.MemberRole;
 import com.doohong.shoesfit.member.dto.LoginMemberDTO;
 import com.doohong.shoesfit.member.dto.MemberDTO;
 import com.doohong.shoesfit.target.dto.ShoesDTO;
