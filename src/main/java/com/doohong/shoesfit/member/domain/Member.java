@@ -1,9 +1,6 @@
 package com.doohong.shoesfit.member.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,6 +17,7 @@ import java.util.Set;
 
 @Getter
 @NoArgsConstructor(access= AccessLevel.PROTECTED)
+
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,7 +45,7 @@ public class Member {
     @UpdateTimestamp
     private LocalDateTime moddate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "member_role", joinColumns = @JoinColumn(name = "member_no"), inverseJoinColumns = @JoinColumn(name = "role_no"))
     private List<MemberRole> roles;
 

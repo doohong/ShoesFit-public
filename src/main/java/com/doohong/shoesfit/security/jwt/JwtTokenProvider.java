@@ -50,23 +50,23 @@ public class JwtTokenProvider {
 
     // Jwt 토큰으로 인증 정보를 조회
     public Authentication getAuthentication(String token) {
-
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
+        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserEmail(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 
     // Jwt 토큰에서 회원 구별 정보 추출
-    public String getUserPk(String token) {
+    public String getUserEmail(String token) {
+
         return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody().getSubject();
     }
 
     // Request의 Header에서 token 파싱 : "X-AUTH-TOKEN: jwt토큰"
     public String resolveToken(HttpServletRequest req) {
         String bearerToken = req.getHeader("Authorization");
-        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
+        if (bearerToken != null) {
+            return bearerToken;
         }
-        System.out.println("넘어간다");
+
         return null;
     }
 //        return req.getHeader("X-AUTH-TOKEN");

@@ -41,5 +41,4 @@ public class MemberApi {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-
 }
