@@ -1,6 +1,7 @@
 package com.doohong.shoesfit.security.service;
 
 import com.doohong.shoesfit.error.ErrorCode;
+import com.doohong.shoesfit.member.domain.Member;
 import com.doohong.shoesfit.member.repository.MemberRepository;
 import com.doohong.shoesfit.security.domain.SecurityMember;
 import com.doohong.shoesfit.security.exception.CustomerNotFoundException;
@@ -17,6 +18,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return new SecurityMember(Optional.ofNullable(memberRepository.findByEmail(email)).orElseThrow(() -> new CustomerNotFoundException(ErrorCode.LOGIN_FAIL)));
+        System.out.println("loadUserByUsername");
+        Member member = memberRepository.findByEmail(email);
+        if(member == null) throw new CustomerNotFoundException(ErrorCode.LOGIN_FAIL);
+        else return new SecurityMember(member);
+        //return new SecurityMember(Optional.ofNullable(memberRepository.findByEmail(email)).orElseThrow(() -> new CustomerNotFoundException(ErrorCode.LOGIN_FAIL)));
     }
 }
