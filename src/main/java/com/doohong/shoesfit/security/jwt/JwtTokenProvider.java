@@ -28,7 +28,7 @@ public class JwtTokenProvider {
 
     private long tokenValidMilisecond = 1000L * 60 * 60; // 1시간만 토큰 유효
 
-    private final CustomUserDetailsService userDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
     // 초기 작업
     @PostConstruct
     protected void init() {
@@ -50,7 +50,7 @@ public class JwtTokenProvider {
 
     // Jwt 토큰으로 인증 정보를 조회
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserEmail(token));
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(this.getUserEmail(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }
 

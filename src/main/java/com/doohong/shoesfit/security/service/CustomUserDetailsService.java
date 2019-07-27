@@ -16,12 +16,10 @@ import java.util.Optional;
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
     private final MemberRepository memberRepository;
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        System.out.println("loadUserByUsername");
-        Member member = memberRepository.findByEmail(email);
-        if(member == null) throw new CustomerNotFoundException(ErrorCode.LOGIN_FAIL);
-        else return new SecurityMember(member);
-        //return new SecurityMember(Optional.ofNullable(memberRepository.findByEmail(email)).orElseThrow(() -> new CustomerNotFoundException(ErrorCode.LOGIN_FAIL)));
+
+       return new SecurityMember(Optional.ofNullable(memberRepository.findByEmail(email)).orElseThrow(() -> new CustomerNotFoundException(ErrorCode.LOGIN_FAIL)));
     }
 }

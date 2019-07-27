@@ -33,11 +33,11 @@ public class GlobalExceptionHandler{
         final ErrorResponse response = ErrorResponse.of(errorCode);
         return new ResponseEntity<>(response, HttpStatus.valueOf(errorCode.getStatus()));
     }
-    @ExceptionHandler(Exception.class)
-    protected void handleAllExeption(final Exception e){
-        log.error("exception",e);
-        e.printStackTrace();
-    }
+//    @ExceptionHandler(Exception.class)
+//    protected void handleAllExeption(final Exception e){
+//        log.error("exception",e);
+//        e.printStackTrace();
+//    }
 
     /**
      *

@@ -1,6 +1,7 @@
 package com.doohong.shoesfit.config;
 
 import com.doohong.shoesfit.security.jwt.JwtTokenProvider;
+import com.doohong.shoesfit.security.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -26,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    private final UserDetailsService customUserDetailsService;
+    private final CustomUserDetailsService customUserDetailsService;
     private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
