@@ -120,7 +120,7 @@ public class ShoesFitControllerTests {
 
     @Test
     public void login_not_found_user() throws Exception {
-        LoginMemberDTO loginMemberDTO = LoginMemberDTO.builder().username("wnghd95@naver.com").password("123").build();
+        LoginMemberDTO loginMemberDTO = LoginMemberDTO.builder().username("wnghd96@naver.com").password("123").build();
         mockMvc.perform(post("/api/member/login")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(objectMapper.writeValueAsString(loginMemberDTO)))
