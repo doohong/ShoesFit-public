@@ -19,7 +19,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Member member = memberRepository.findByEmail(email);
 
+        if(member ==null){
+            System.out.println("null");
+
+        }
        return new SecurityMember(Optional.ofNullable(memberRepository.findByEmail(email)).orElseThrow(() -> new CustomerNotFoundException(ErrorCode.LOGIN_FAIL)));
     }
 }

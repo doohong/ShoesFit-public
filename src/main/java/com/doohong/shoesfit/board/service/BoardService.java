@@ -14,7 +14,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     public BoardResponse write(BoardWriteDto boardWriteDto){
-        Board board = boardRepository.save(Board.builder().boardTitle(boardWriteDto.getBoardTitle()).boardTitle(boardWriteDto.getBoardContent()).build());
+        Board board = boardRepository.save(Board.builder().boardTitle(boardWriteDto.getBoardTitle()).boardContent(boardWriteDto.getBoardContent()).build());
         return BoardResponse.builder().boardContent(board.getBoardContent()).boardNo(board.getBoardNo()).boardTitle(board.getBoardTitle()).build();
     }
 }

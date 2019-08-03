@@ -1,5 +1,7 @@
 package com.doohong.shoesfit.filter;
 
+import com.doohong.shoesfit.error.ErrorCode;
+import com.doohong.shoesfit.security.exception.CustomerNotFoundException;
 import com.doohong.shoesfit.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
@@ -29,6 +31,7 @@ public class JwtTokenFilter extends GenericFilterBean {
             Authentication auth = token != null ? jwtTokenProvider.getAuthentication(token) : null;
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }
