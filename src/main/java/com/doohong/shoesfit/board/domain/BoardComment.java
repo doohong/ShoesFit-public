@@ -12,12 +12,14 @@ import java.time.LocalDateTime;
 @Table(name = "tbl_board_comment")
 @Getter
 public class BoardComment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_comment_no")
     private Long boardCommentNo;
 
     @Column(name = "board_comment_content")
     private String boardCommentContent;
-    @Column(name = "member_no")
+    @Column(name = "board_comment_member")
     private Member member;
     @Column(name = "board_comment_reg_dt")
     private LocalDateTime boardCommentRegDt;

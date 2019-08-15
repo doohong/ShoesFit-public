@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*").permitAll()
                 .antMatchers("/event/*","/event/**").permitAll()
                 .antMatchers("/api/member/*","/api/member/**").permitAll()
-                .antMatchers("/api/board/*").hasRole("ADMIN").anyRequest().authenticated()
+                .antMatchers("/api/board/write").hasRole("ADMIN").anyRequest().authenticated()
                 .and().csrf().disable().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint()).and()
                 .apply(new JwtConfig(jwtTokenProvider));
     }

@@ -1,18 +1,17 @@
 package com.doohong.shoesfit.board;
 
 
+import com.doohong.shoesfit.board.domain.Board;
 import com.doohong.shoesfit.board.dto.BoardResponse;
 import com.doohong.shoesfit.board.dto.BoardWriteDto;
 import com.doohong.shoesfit.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +23,10 @@ public class BoardApi {
     public ResponseEntity<BoardResponse> write(@RequestBody @Valid BoardWriteDto boardWriteDto) {
         return ResponseEntity.status(HttpStatus.OK).body(boardService.write(boardWriteDto));
 
+    }
+    @GetMapping(value="list")
+    public ResponseEntity<List<Board>> list(){
+        return ResponseEntity.status(HttpStatus.OK).body(boardService.list());
     }
 
 }

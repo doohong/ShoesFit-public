@@ -7,6 +7,8 @@ import com.doohong.shoesfit.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class BoardService {
@@ -16,5 +18,10 @@ public class BoardService {
     public BoardResponse write(BoardWriteDto boardWriteDto){
         Board board = boardRepository.save(Board.builder().boardTitle(boardWriteDto.getBoardTitle()).boardContent(boardWriteDto.getBoardContent()).build());
         return BoardResponse.builder().boardContent(board.getBoardContent()).boardNo(board.getBoardNo()).boardTitle(board.getBoardTitle()).build();
+    }
+
+    public List<Board> list(){
+        List<Board> boardList = boardRepository.findAll();
+        return boardList;
     }
 }

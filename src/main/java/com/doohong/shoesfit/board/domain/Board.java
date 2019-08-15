@@ -31,7 +31,7 @@ public class Board {
     private LocalDateTime boardModDt;
     @Column(name = "board_member")
     private Member member;
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<BoardComment> boardComments;
     @Builder
     public Board(String boardTitle, String boardContent) {
