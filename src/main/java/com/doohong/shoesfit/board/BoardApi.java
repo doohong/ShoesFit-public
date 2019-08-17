@@ -3,6 +3,7 @@ package com.doohong.shoesfit.board;
 
 import com.doohong.shoesfit.board.domain.Board;
 import com.doohong.shoesfit.board.dto.BoardResponse;
+import com.doohong.shoesfit.board.dto.BoardUpdateDto;
 import com.doohong.shoesfit.board.dto.BoardWriteDto;
 import com.doohong.shoesfit.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,11 @@ public class BoardApi {
     @GetMapping(value="list")
     public ResponseEntity<List<Board>> list(){
         return ResponseEntity.status(HttpStatus.OK).body(boardService.list());
+    }
+
+    @PutMapping(value="update")
+    public ResponseEntity<BoardResponse> update(@RequestBody @Valid BoardUpdateDto boardUpdateDto){
+        return ResponseEntity.status(HttpStatus.OK).body(boardService.update(boardUpdateDto));
     }
 
 }
