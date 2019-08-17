@@ -29,7 +29,8 @@ public class Board {
     private LocalDateTime boardRegDt;
     @Column(name = "board_mod_dt")
     private LocalDateTime boardModDt;
-    @Column(name = "board_member")
+    @OneToOne
+    @JoinColumn(name = "board_member")
     private Member member;
     @OneToMany(fetch = FetchType.LAZY)
     private List<BoardComment> boardComments;
